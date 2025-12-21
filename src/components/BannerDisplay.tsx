@@ -256,7 +256,19 @@ const BannerDisplay: React.FC<BannerDisplayProps> = ({
           {banner ? (
             <BannerCode>{displayBanner}</BannerCode>
           ) : (
-            <PlaceholderText>Banner code will appear after generating banner</PlaceholderText>
+            <div style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <PlaceholderText>Banner code will appear after generating banner</PlaceholderText>
+              <ExplanatoryText>
+                Use the Copy to Clipboard button that will appear below and paste into a Slack message
+              </ExplanatoryText>
+            </div>
           )}
         </BannerCodeContainer>
         {banner && (
