@@ -1,18 +1,18 @@
 :root {
-  /* Dark mode colors with purple accent */
+  /* Dark mode colors with darker purple accent */
   --color-bg-primary: #121212;
   --color-bg-secondary: #1e1e1e;
   --color-text-primary: #e0e0e0;
   --color-text-secondary: #a0a0a0;
-  --color-accent-primary: #8a2be2; /* BlueViolet */
-  --color-accent-secondary: #9370db; /* Medium Purple */
-  --color-accent-hover: #b19cd9; /* Light medium purple */
+  --color-accent-primary: #5e1dad; /* Darker BlueViolet */
+  --color-accent-secondary: #6a3ea1; /* Darker Medium Purple */
+  --color-accent-hover: #7c54a3; /* Darker light purple */
   --color-border: #333333;
 
   /* Glow effects */
-  --glow-small: 0 0 5px rgba(138, 43, 226, 0.3);
-  --glow-medium: 0 0 15px rgba(138, 43, 226, 0.4);
-  --glow-large: 0 0 25px rgba(138, 43, 226, 0.5);
+  --glow-small: 0 0 5px rgba(94, 29, 173, 0.3);
+  --glow-medium: 0 0 15px rgba(94, 29, 173, 0.4);
+  --glow-large: 0 0 25px rgba(94, 29, 173, 0.5);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -36,8 +36,8 @@ body {
   min-height: 100vh;
   background-color: var(--color-bg-primary);
   background-image:
-    radial-gradient(circle at top right, rgba(138, 43, 226, 0.1), transparent 60%),
-    radial-gradient(circle at bottom left, rgba(147, 112, 219, 0.05), transparent 40%);
+    radial-gradient(circle at top right, rgba(94, 29, 173, 0.1), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(106, 62, 161, 0.05), transparent 40%);
   position: relative;
   overflow-x: hidden;
 }
@@ -50,7 +50,7 @@ body::before {
   width: 100vh;
   height: 100vh;
   border-radius: 50%;
-  background: linear-gradient(rgba(138, 43, 226, 0.03), rgba(138, 43, 226, 0.01));
+  background: linear-gradient(rgba(94, 29, 173, 0.03), rgba(94, 29, 173, 0.01));
   z-index: -1;
   filter: blur(40px);
   animation: pulse 15s infinite alternate;

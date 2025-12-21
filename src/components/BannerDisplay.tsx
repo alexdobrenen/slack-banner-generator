@@ -63,7 +63,7 @@ const PreviewHeading = styled(Heading)`
 
 const PreviewContainer = styled.div`
   flex: 1;
-  background-color: #1a1d21; /* Slack dark mode color */
+  background-color: rgba(0, 0, 0, 0.2); /* Same as BannerCode background */
   padding: 30px 20px;
   overflow-x: auto;
   display: flex;

@@ -79,20 +79,20 @@ const SuggestionWrapper = styled.div`
 
 const SuggestionTag = styled.span`
   display: inline-block;
-  background-color: rgba(138, 43, 226, 0.15);
-  color: var(--color-accent-secondary);
+  background-color: rgba(166, 127, 233, 0.12);
+  color: #a67fe9; /* Lighter purple for better visibility */
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   user-select: none;
-  border: 1px solid rgba(138, 43, 226, 0.3);
+  border: 1px solid rgba(166, 127, 233, 0.3);
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(138, 43, 226, 0.25);
-    border-color: var(--color-accent-secondary);
+    background-color: rgba(166, 127, 233, 0.2);
+    border-color: #b69df0; /* Even lighter on hover */
     box-shadow: var(--glow-small);
     transform: translateY(-1px);
   }
