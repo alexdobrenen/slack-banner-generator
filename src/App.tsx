@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import BannerForm from './components/BannerForm'
 import BannerDisplay from './components/BannerDisplay'
-import { generateBanner, previewBanner } from './utils/bannerGenerator'
+import { generateSimpleBanner, previewSimpleBanner } from './utils/simpleBannerGenerator'
 
 const AppContainer = styled.div`
   max-width: 1200px;
@@ -38,7 +38,7 @@ function App() {
       const testBgEmoji = 'black_large_square';
 
       console.log(`Testing banner generation with: text="${testText}", wordEmoji="${testWordEmoji}", backgroundEmoji="${testBgEmoji}"`);
-      const testBanner = generateBanner(testText, testWordEmoji, testBgEmoji);
+      const testBanner = generateSimpleBanner(testText, testWordEmoji, testBgEmoji);
       console.log('Test banner generation succeeded:', testBanner.substring(0, 100) + '...');
     } catch (error) {
       console.error('Test banner generation failed:', error);
@@ -50,7 +50,7 @@ function App() {
 
     try {
       // Call the banner generator
-      const generatedBanner = generateBanner(text, wordEmoji, backgroundEmoji);
+      const generatedBanner = generateSimpleBanner(text, wordEmoji, backgroundEmoji);
       console.log("App: Generated banner length:", generatedBanner.length);
       console.log("App: Banner first 100 chars:", generatedBanner.substring(0, 100));
 
@@ -60,7 +60,7 @@ function App() {
 
       // Generate and set preview
       console.log("App: Generating preview");
-      const previewContent = previewBanner(generatedBanner);
+      const previewContent = previewSimpleBanner(generatedBanner);
       console.log("App: Preview length:", previewContent.length);
       console.log("App: Preview first 100 chars:", previewContent.substring(0, 100));
       setPreview(previewContent);
