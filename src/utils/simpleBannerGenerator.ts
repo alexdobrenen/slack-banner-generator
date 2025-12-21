@@ -323,19 +323,39 @@ export const generateSimpleBanner = (
     }
   }
 
-  // Convert grid to emoji text
+  // Convert grid to emoji text with border
   let result = '';
-  for (let row = 0; row < height; row++) {
-    // Add a space at the beginning of each line
-    let line = ' ';
 
+  // Add top border (a full line of background emoji)
+  let topBorder = ' ';
+  for (let i = 0; i < width + 2; i++) {
+    topBorder += `:${backgroundEmoji}:`;
+  }
+  result += topBorder + '\n';
+
+  // Add each row of the banner with side borders
+  for (let row = 0; row < height; row++) {
+    // Add a space at the beginning of each line followed by a border emoji
+    let line = ' ' + `:${backgroundEmoji}:`;
+
+    // Add the content for this row
     for (let col = 0; col < width; col++) {
       // Replace '1' with wordEmoji and '0' with backgroundEmoji
       line += (grid[row][col] === '1') ? `:${wordEmoji}:` : `:${backgroundEmoji}:`;
     }
 
+    // Add the right border
+    line += `:${backgroundEmoji}:`;
+
     result += line + '\n';
   }
+
+  // Add bottom border (a full line of background emoji)
+  let bottomBorder = ' ';
+  for (let i = 0; i < width + 2; i++) {
+    bottomBorder += `:${backgroundEmoji}:`;
+  }
+  result += bottomBorder + '\n';
 
   return result;
 };
