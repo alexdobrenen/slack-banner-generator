@@ -42,16 +42,44 @@ const Heading = styled.h3`
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 `;
 
-const BannerCode = styled.pre`
+const BannerCodeContainer = styled.div`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  overflow-x: auto;
+  min-height: 250px; /* Match PreviewContainer min-height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Dark mode scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #444444;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
+`;
+
+const BannerCode = styled.pre`
+  width: 100%;
+  padding: 30px 20px; /* Match PreviewContainer padding */
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
   font-family: 'Fira Code', 'Consolas', monospace;
-  overflow-x: auto;
-  color: var(--color-text-primary);
+  color: white;
   line-height: 1.5;
   font-size: 14px;
   border-radius: 0;
@@ -70,6 +98,26 @@ const PreviewContainer = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 250px; /* Ensure a good size for the preview */
+
+  /* Dark mode scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #444444;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
 `;
 
 const PreviewText = styled.pre`
@@ -105,6 +153,14 @@ const ButtonContainer = styled.div`
   border-top: 1px solid var(--color-border);
   background-color: rgba(0, 0, 0, 0.1);
   text-align: right;
+`;
+
+const PlaceholderText = styled.div`
+  width: 100%;
+  text-align: center;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 16px;
+  color: white;
 `;
 
 const Button = styled.button`
@@ -158,14 +214,20 @@ const BannerDisplay: React.FC<BannerDisplayProps> = ({
         <PreviewHeading>Preview:</PreviewHeading>
         <PreviewContainer>
           <PreviewText>
-            {previewBanner ? formatPreview(previewBanner) : "Preview will appear here after generating banner"}
+            {previewBanner ? formatPreview(previewBanner) : "Banner preview will appear after generating banner"}
           </PreviewText>
         </PreviewContainer>
       </Section>
 
       <Section>
         <Heading>Banner Code:</Heading>
-        <BannerCode>{displayBanner}</BannerCode>
+        <BannerCodeContainer>
+          {banner ? (
+            <BannerCode>{displayBanner}</BannerCode>
+          ) : (
+            <PlaceholderText>Banner code will appear after generating banner</PlaceholderText>
+          )}
+        </BannerCodeContainer>
         {banner && (
           <ButtonContainer>
             <Button onClick={onCopyToClipboard}>Copy to Clipboard</Button>

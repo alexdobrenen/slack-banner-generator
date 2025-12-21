@@ -112,7 +112,7 @@ function App() {
     <AppContainer>
       <Header>
         <Title>Slackmoji Banner Generator</Title>
-        <Subtitle>Create awesome banners for your Slack messages</Subtitle>
+        <Subtitle>Annoy your coworkers with flashy Slack message banners</Subtitle>
       </Header>
 
       <BannerForm onGenerate={handleGenerateBanner} />
