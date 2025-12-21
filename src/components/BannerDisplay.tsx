@@ -127,6 +127,11 @@ const PreviewText = styled.pre`
   font-size: 16px;
   line-height: 1.2;
   color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   /* Ensure lines maintain structure */
   & > div {
@@ -161,6 +166,16 @@ const PlaceholderText = styled.div`
   font-family: 'Fira Code', 'Consolas', monospace;
   font-size: 16px;
   color: white;
+  margin-bottom: 10px;
+`;
+
+const ExplanatoryText = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+  display: block;
 `;
 
 const Button = styled.button`
@@ -213,9 +228,25 @@ const BannerDisplay: React.FC<BannerDisplayProps> = ({
       <Section>
         <PreviewHeading>Preview:</PreviewHeading>
         <PreviewContainer>
-          <PreviewText>
-            {previewBanner ? formatPreview(previewBanner) : "Banner preview will appear after generating banner"}
-          </PreviewText>
+          {previewBanner ? (
+            <PreviewText>
+              {formatPreview(previewBanner)}
+            </PreviewText>
+          ) : (
+            <div style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <PlaceholderText>Banner preview will appear after generating banner</PlaceholderText>
+              <ExplanatoryText>
+                📎 & 📌 will be used as placeholders if the slackmoji entered is not available for preview
+              </ExplanatoryText>
+            </div>
+          )}
         </PreviewContainer>
       </Section>
 

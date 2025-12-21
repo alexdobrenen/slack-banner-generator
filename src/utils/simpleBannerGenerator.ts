@@ -369,6 +369,36 @@ export const previewSimpleBanner = (banner: string): string => {
   // If no banner, return empty string
   if (!banner) return '';
 
+  // Extract the word emoji and background emoji from the banner
+  // This is a more reliable way to determine which emoji is which
+  // First, we'll identify the emojis used in the banner
+  const usedEmojis = new Set<string>();
+  const emojiMatches = banner.match(/:([\w_]+):/g) || [];
+  emojiMatches.forEach(match => {
+    const emojiName = match.slice(1, -1); // Remove the colons
+    usedEmojis.add(emojiName);
+  });
+
+  // If we found exactly two emojis, we can assume one is text and one is background
+  const usedEmojiArray = Array.from(usedEmojis);
+  let wordEmoji = '';
+  let backgroundEmoji = '';
+
+  if (usedEmojiArray.length === 2) {
+    // Determine which is likely the background emoji (used more frequently)
+    const firstEmojiCount = (banner.match(new RegExp(`:${usedEmojiArray[0]}:`, 'g')) || []).length;
+    const secondEmojiCount = (banner.match(new RegExp(`:${usedEmojiArray[1]}:`, 'g')) || []).length;
+
+    // The emoji used more frequently is likely the background
+    if (firstEmojiCount > secondEmojiCount) {
+      backgroundEmoji = usedEmojiArray[0];
+      wordEmoji = usedEmojiArray[1];
+    } else {
+      backgroundEmoji = usedEmojiArray[1];
+      wordEmoji = usedEmojiArray[0];
+    }
+  }
+
   // A simple emoji map for common Slack emojis
   const emojiMap: Record<string, string> = {
     // Common emojis that might be used for text
@@ -398,8 +428,28 @@ export const previewSimpleBanner = (banner: string): string => {
   };
 
   // Replace known emoji codes with actual emojis if we have them
-  // Otherwise, use a generic emoji character
+  // Otherwise, use different fallback emojis for text and background
   return banner.replace(/:([\w_]+):/g, (_, emojiName) => {
-    return emojiMap[emojiName] || '📌';
+    // If emoji exists in our map, use it
+    if (emojiMap[emojiName]) {
+      return emojiMap[emojiName];
+    }
+
+    // If we were able to identify word and background emojis
+    if (wordEmoji && backgroundEmoji) {
+      if (emojiName === wordEmoji) {
+        return '📎'; // Paperclip for text emoji fallback
+      } else if (emojiName === backgroundEmoji) {
+        return '📌'; // Pushpin for background emoji fallback
+      }
+    }
+
+    // Fallback detection if we couldn't determine definitively
+    // Check if this is likely a background emoji (by checking if it ends with '_square')
+    if (emojiName.endsWith('_square') || emojiName.endsWith('_circle')) {
+      return '📌'; // Pushpin for background emoji fallback
+    } else {
+      return '📎'; // Paperclip for text emoji fallback
+    }
   });
 };
