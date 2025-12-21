@@ -2,7 +2,7 @@
 
 A React web application for creating custom Slack emoji banners and copying them to the clipboard.
 
-<img width="423" height="413.5" alt="slackmoji-banner-generator" src="https://github.com/user-attachments/assets/f4d2814e-0b8b-4dcc-a800-a23161bf2368" />
+<img width="600" height="600" alt="slackmoji-banner-generator" src="https://github.com/user-attachments/assets/f4d2814e-0b8b-4dcc-a800-a23161bf2368" />
 
 ## Features
 
