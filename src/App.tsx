@@ -12,17 +12,33 @@ const AppContainer = styled.div`
 
 const Header = styled.header`
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  position: relative;
 `;
 
 const Title = styled.h1`
-  color: #4a154b;
-  margin-bottom: 10px;
+  color: var(--color-accent-primary);
+  margin-bottom: 15px;
+  text-shadow: var(--glow-small);
+  letter-spacing: 1px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--color-accent-secondary), transparent);
+  }
 `;
 
 const Subtitle = styled.p`
   font-size: 1.2rem;
-  color: #666;
+  color: var(--color-text-secondary);
+  margin-top: 15px;
 `;
 
 function App() {
@@ -95,7 +111,7 @@ function App() {
   return (
     <AppContainer>
       <Header>
-        <Title>Slackmoji Banner Generator</Title>
+        <Title>✨ Slackmoji Banner Generator</Title>
         <Subtitle>Create awesome banners for your Slack messages</Subtitle>
       </Header>
 

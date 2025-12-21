@@ -9,69 +9,99 @@ interface BannerFormProps {
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 30px;
+  padding: 25px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), var(--glow-small);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary));
+    border-radius: 12px 12px 0 0;
+  }
 `;
 
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 `;
 
 const Label = styled.label`
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 5px;
+  color: var(--color-text-primary);
+  letter-spacing: 0.5px;
 `;
 
 const Input = styled.input`
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 12px 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
   font-size: 16px;
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+
+  &:focus {
+    border-color: var(--color-accent-secondary);
+    box-shadow: var(--glow-small);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
 `;
 
 const SuggestionWrapper = styled.div`
-  margin-top: 5px;
+  margin-top: 8px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
+  align-items: center;
+
+  small {
+    color: var(--color-text-secondary);
+    margin-right: 4px;
+  }
 `;
 
 const SuggestionTag = styled.span`
   display: inline-block;
-  background-color: #E8F5FA;
-  color: #4a154b;
-  padding: 3px 8px;
+  background-color: rgba(138, 43, 226, 0.15);
+  color: var(--color-accent-secondary);
+  padding: 4px 10px;
   border-radius: 12px;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   user-select: none;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  transition: all 0.2s ease;
 
   &:hover {
-    background-color: #D1E8F5;
+    background-color: rgba(138, 43, 226, 0.25);
+    border-color: var(--color-accent-secondary);
+    box-shadow: var(--glow-small);
+    transform: translateY(-1px);
   }
 `;
 
 const Button = styled.button`
-  padding: 12px;
-  background-color: #4a154b;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  padding: 14px;
+  margin-top: 10px;
   font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #611f69;
-  }
 `;
 
 const BannerForm: React.FC<BannerFormProps> = ({ onGenerate }) => {
